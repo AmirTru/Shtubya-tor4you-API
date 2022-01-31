@@ -1,0 +1,110 @@
+
+<script src="APIStubyaAlgo.js" type="text/javascript"> </script>
+<script src="APIStubyaAlgoFunc.js" type="text/javascript"> </script>
+
+<script src="https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/source/jsCalendar.min.js" integrity="sha384-0LaRLH/U5g8eCAwewLGQRyC/O+g0kXh8P+5pWpzijxwYczD3nKETIqUyhuA8B/UB" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simple-jscalendar@1.4.4/source/jsCalendar.min.css" integrity="sha384-44GnAqZy9yUojzFPjdcUpP822DGm1ebORKY8pe6TkHuqJ038FANyfBYBpRvw8O9w" crossorigin="anonymous">
+
+<div id="my-calendar"></div>
+
+<!-- <div class="box" id="shift-select">
+    <select>
+      <option value="" disabled="disabled" selected="selected">בחר משמרת</option>
+      <option value="0500">בוקר</option>
+      <option value="1700">ערב</option>
+    </select>
+  </div> -->
+<!-- 
+  <button class="btn success">אישור</button> -->
+
+<!-- Create the calendar -->
+<script type="text/javascript">
+
+    // Get the element's
+    var cal = document.getElementById("my-calendar");
+    var shift = document.getElementById("shift-select")
+
+    // Create the calendar
+    var myCalendar = jsCalendar.new(cal);
+
+    // Create selected time var
+    var selectedTime;
+
+
+    myCalendar.onDateClick(function(event, date){
+
+      //set date to current day
+      myCalendar.set(SetGetCurrentTimeFromCalendar(date));
+        
+      GetDataFromCalander(GetCurrentTimeFromCalendar(date), GetTomorrowFromCalendar(date));
+       
+    });
+
+    function GetCurrentTimeFromCalendar(date){
+
+        var year;
+        var month;
+        var day;
+
+        //YYYYMMDD
+        year = date.getFullYear();
+        month = date.getMonth() + 1;
+        if (month < 10) {
+                month = "0" + month;
+        }
+        day = date.getDate();
+          if (day < 10) {
+                day = "0" + day;
+        }
+        
+        //console.log(year.toString() + month.toString() + day.toString());
+        return year.toString() + month.toString() + day.toString()
+
+    }
+
+    function GetTomorrowFromCalendar(date){
+
+        var year;
+        var month;
+        var day;
+
+        //YYYYMMDD
+        year = date.getFullYear();
+        month = date.getMonth() + 1;
+        if (month < 10) {
+                month = "0" + month;
+        }
+        day = date.getDate() +1;
+          if (day < 10) {
+                day = "0" + day;
+        }
+        
+        //console.log(year.toString() + month.toString() + day.toString());
+        return year.toString() + month.toString() + day.toString()
+
+    }
+
+    function SetGetCurrentTimeFromCalendar(date){
+
+      var year;
+      var month;
+      var day;
+
+      //YYYYMMDD
+       year = date.getFullYear();
+       month = date.getMonth() + 1;
+        if (month < 10) {
+          month = "0" + month;
+          }   
+        day = date.getDate();
+        if (day < 10) {
+           day = "0" + day;
+          }
+
+        return day.toString() + "/" + month.toString() + "/" + year.toString()
+
+    }
+
+</script>
+
+
